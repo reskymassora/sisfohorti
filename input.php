@@ -275,13 +275,14 @@ if ($userInfo !== false) {
       <!--//tab-content-->
     </div>
     <!--//container-fluid-->
-  </div>
-  <!--//app-content-->
+    </div>
 
-
-  <!--//app-footer-->
   </div>
   <!--//app-wrapper-->
+
+  <?php
+    require 'navigation/footer.php';
+  ?>
 
   <script>
     //Menampilkan tanggal secara otomatis

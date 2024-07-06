@@ -100,8 +100,6 @@
   </section>
   <!-- End of section tanaman -->
 
-
-
   <!-- Footer -->
   <footer class="bg-body-tertiary text-center mt-5">
     <!-- Copyright -->

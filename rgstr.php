@@ -1,13 +1,3 @@
-<?php
-// session_start();
-
-// if( $_SESSION != TRUE){
-//   header("Location: login.php");
-//   exit;
-// }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 

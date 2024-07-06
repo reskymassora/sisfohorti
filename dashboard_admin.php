@@ -133,10 +133,7 @@ if ($userInfo !== false) {
             <!--//app-card-->
           </div>
           <!--//col-->
-
         </div>
-
-
         <div class="app-search-box col mb-3">
           <form class="app-search-form" method="post">
             <input type="text" id="search" placeholder="Search... [ Nama distrik, Nama komoditas ]" name="keyword" class="form-control search-input" />
@@ -203,6 +200,10 @@ if ($userInfo !== false) {
       </div>
     </div>
   </div>
+
+  <?php
+    require 'navigation/footer.php';
+  ?>
 
   <!-- Javascript -->
   <script src="assets/plugins/popper.min.js"></script>
