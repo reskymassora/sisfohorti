@@ -50,7 +50,7 @@ if ($_SESSION != TRUE) {
   // edit data
   if (isset($_POST['submit'])) {
     // Cek inputan kosong atau tidak
-    if (empty($_POST['distrik']) || empty($_POST['komoditas']) || empty($_POST['luasLahan']) || empty($_POST['luasPanen']) || empty($_POST['dp']) || empty($_POST['hktppm']) || empty($_POST['tanggal'])) {
+    if (empty($_POST['distrik']) || empty($_POST['komoditas']) || empty($_POST['luasLahan']) || empty($_POST['luasPanen']) || empty($_POST['dp']) || empty($_POST['tanggal'])) {
       echo "<script>
         Swal.fire({
             title: 'Error!',
@@ -298,10 +298,10 @@ if ($_SESSION != TRUE) {
 
                 <tr>
                   <td>
-                    <label for="#hktppm">Harga Komoditi Tingkat Petani (Minggu)</label>
+                    <label for="#hktppm">Harga Komoditi Tingkat Petani</label>
                   </td>
                   <td>
-                    <input id="#hktppm" type="number" class="form-control" name="hktppm" value="<?= $data["hktppm"] ?>" step="0.01" min="0" require />
+                    <input id="#hktppm" type="number" class="form-control" name="hktppm" value="<?= $data["hktppm"] ?>" step="0.01" min="0"/>
                   </td>
                 </tr>
 

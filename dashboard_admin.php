@@ -108,31 +108,38 @@ if ($userInfo !== false) {
       <div class="container-xl">
         <h1 class="app-page-title">Dashboard</h1>
         <div class="row g-4 mb-4">
+         
           <div class="col-6 col-lg-3">
             <div class="app-card app-card-stat shadow-sm h-100">
               <div class="app-card-body p-3 p-lg-4">
                 <h4 class="stats-type mb-1">Total Luas Tanam (HA)</h4>
                 <div class="stats-figure"> <?= $totalLuasTanam; ?></div>
               </div>
-              <!--//app-card-body-->
               <a class="app-card-link-mask" href="#"></a>
             </div>
-            <!--//app-card-->
           </div>
-          <!--//col-->
-
+          
           <div class="col-6 col-lg-3">
             <div class="app-card app-card-stat shadow-sm h-100">
               <div class="app-card-body p-3 p-lg-4">
                 <h4 class="stats-type mb-1">Total Luas Panen (HA)</h4>
                 <div class="stats-figure"><?= $totalLuasPanen; ?></div>
               </div>
-              <!--//app-card-body-->
               <a class="app-card-link-mask" href="#"></a>
             </div>
-            <!--//app-card-->
           </div>
-          <!--//col-->
+
+          <div class="col-6 col-lg-3">
+            <div class=" bg-success app-card app-card-stat shadow-sm h-100 border border-success">
+              <div class="app-card-body p-3 p-lg-4">
+                <h4 class="stats-type mb-1 text-white">Total Produksi <br> Per Komoditi</h4>
+                <div class="bg-white"><hr></div>
+                <a class="btn app-btn-secondary deleteButton p-2">Tampilkan</a>
+              </div>
+              <a class="app-card-link-mask" href="totalProduksiKomoditi.php"></a>
+            </div>
+          </div>
+
         </div>
         <div class="app-search-box col mb-3">
           <form class="app-search-form" method="post">
@@ -162,7 +169,7 @@ if ($userInfo !== false) {
                         <th class="cell">Luas Tanam <br> (HA)</th>
                         <th class="cell">Luas Panen <br> (HA)</th>
                         <th class="cell">Data Produksi <br> (KW)</th>
-                        <th class="cell">Harga Komoditi Tingkat <br> Petani (Minggu)</th>
+                        <th class="cell">Harga Komoditi <br> Tingkat Petani</th>
                         <th class="cell">Tanggal</th>
                         <th class="cell">Tindakan</th>
                       </tr>
@@ -278,7 +285,7 @@ if ($userInfo !== false) {
             <th class="cell">Luas Tanam <br> (HA)</th>
             <th class="cell">Luas Panen <br> (HA)</th>
             <th class="cell">Data Produksi <br> (KW)</th>
-            <th class="cell">Harga Komoditi Tingkat <br> Petani (Minggu)</th>
+            <th class="cell">Harga Komoditi Tingkat <br> Petani </th>
             <th class="cell">Tanggal</th>
             <th class="cell">Tindakan</th>
           </tr>

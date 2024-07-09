@@ -63,37 +63,39 @@
   <!-- section Tanaman -->
   <section>
     <div class="container">
-      <h2 class="mb-3 text-center" id="tabel_komoditas">Tabel Komoditas</h2>
-      <table class="table">
-        <thead>
-          <tr class="bg-success text-white">
-            <th class="cell">No.</th>
-            <th class="cell">Distrik</th>
-            <th class="cell">Komoditas</th>
-            <th class="cell">Luas <br> Tanam (HA)</th>
-            <th class="cell">Luas <br> Panen (HA)</th>
-            <th class="cell">Data <br> Produksi (KW)</th>
-            <th class="cell">Harga Komoditi Tingkat <br> Petani (Minggu)</th>
-          </tr>
-        </thead>
-
-        <tbody class="table-group-divider">
-          <?php $i = 1; ?>
-          <?php foreach ($daftarTanaman as $data) : ?>
-            <tr>
-              <td><?= $i; ?></td>
-              <td><?= $data['distrik'] ?></td>
-              <td><?= $data['komoditas'] ?></td>
-              <td><?= $data['luasLahan'] ?></td>
-              <td><?= $data['luasPanen'] ?></td>
-              <td><?= $data['dataProduksi'] ?></td>
-              <td><?= $data['hktppm'] ?></td>
+      <h2 class="mb-4 text-center" id="tabel_komoditas">INFORMASI KOMODITAS</h2>
+      <div class="table-responsive">
+        <table class="table app-table-hover mb-0 text-left">
+          <thead>
+            <tr class="bg-success text-white">
+              <th class="cell">No.</th>
+              <th class="cell">Distrik</th>
+              <th class="cell">Komoditas</th>
+              <th class="cell">Luas <br> Tanam (HA)</th>
+              <th class="cell">Luas <br> Panen (HA)</th>
+              <th class="cell">Data <br> Produksi (KW)</th>
+              <th class="cell">Harga Komoditi Tingkat <br> Petani</th>
             </tr>
-            <?php $i++; ?>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
-      <div class="text-center">
+          </thead>
+
+          <tbody class="table-group-divider">
+            <?php $i = 1; ?>
+            <?php foreach ($daftarTanaman as $data) : ?>
+              <tr>
+                <td><?= $i; ?></td>
+                <td><?= $data['distrik'] ?></td>
+                <td><?= $data['komoditas'] ?></td>
+                <td><?= $data['luasLahan'] ?></td>
+                <td><?= $data['luasPanen'] ?></td>
+                <td><?= $data['dataProduksi'] ?></td>
+                <td><?= $data['hktppm'] ?></td>
+              </tr>
+              <?php $i++; ?>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mt-3">
         <button type="button" onclick="window.location.href='daftar_lengkap.php'" class="btn btn-success text-white">Selengkapnya >></button>
       </div>
     </div>
@@ -104,7 +106,7 @@
   <footer class="bg-body-tertiary text-center mt-5">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-      © 2024 Copyright : 
+      © 2024 Copyright :
       <span class="text-body">Dinas Tanaman Pangan Hortikultura Dan Perkebunan Kabupaten Mimika</span>
     </div>
     <!-- Copyright -->

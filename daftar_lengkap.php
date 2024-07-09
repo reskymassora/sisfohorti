@@ -44,6 +44,10 @@
 
   ?>
 
+  <div >
+    <h2 class="mb-3 text-center mt-4" id="tabel_komoditas">INFORMASI KOMODITAS</h2>
+  </div>
+
   <div class="app-search-box col mb-3 mt-4">
     <form class="app-search-form" method="post">
       <input type="text" id="search" placeholder="Search... [ Nama distrik, Nama komoditas ]" name="keyword" class="form-control search-input" />
@@ -57,9 +61,7 @@
             <div id="results" class="tab-content table-responsive" id="orders-table-tab-content">
               <!-- Tabel hasil pencarian akan dimasukkan di sini oleh JavaScript -->
             </div>
-
             <div class="table-responsive">
-              <!-- Tabel Utama -->
               <table class="table app-table-hover mb-0 text-left" id="main-table">
                 <thead>
                   <tr>

@@ -236,7 +236,7 @@ if ($userInfo !== false) {
 
                 <tr>
                   <td>
-                    <label for="#potensiLahan">Harga Komoditi Tingkat Petani (Minggu)</label>
+                    <label for="#potensiLahan">Harga Komoditi Tingkat Petani</label>
                   </td>
                   <td>
                     <input id="#potensiLahan" type="number" class="form-control" name="hktppm" step="0.01" min="0"/>
