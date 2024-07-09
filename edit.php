@@ -146,15 +146,9 @@ if ($_SESSION != TRUE) {
                 </svg>
               </a>
             </div>
-
-
-            <!--//app-utilities-->
           </div>
-          <!--//row-->
         </div>
-        <!--//app-header-content-->
       </div>
-      <!--//container-fluid-->
     </div>
     <!--//app-header-inner-->
     <div id="app-sidepanel" class="app-sidepanel sidepanel-hidden">
@@ -301,7 +295,7 @@ if ($_SESSION != TRUE) {
                     <label for="#hktppm">Harga Komoditi Tingkat Petani</label>
                   </td>
                   <td>
-                    <input id="#hktppm" type="number" class="form-control" name="hktppm" value="<?= $data["hktppm"] ?>" step="0.01" min="0"/>
+                    <input id="#hktppm" type="number" class="form-control" name="hktppm" value="<?= $data["hktppm"] ?>" step="0.01" min="0" />
                   </td>
                 </tr>
 
@@ -310,7 +304,7 @@ if ($_SESSION != TRUE) {
                     <label for="#tanggal">Tanggal</label>
                   </td>
                   <td>
-                    <input id="#tanggal" type="date" class="form-control" name="tanggal" value="<?= $data["tanggal"] ?>" require />
+                    <input id="#tanggal" type="text" class="form-control" name="tanggal" value="<?= $data["tanggal"] ?>" require />
                   </td>
                 </tr>
 
@@ -324,7 +318,7 @@ if ($_SESSION != TRUE) {
 
                 <tr>
                   <td>
-                    <button name="submit" type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Edit Data</button>
+                    <button name="submit" type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Ubah Data</button>
                   </td>
                 </tr>
 
@@ -332,16 +326,9 @@ if ($_SESSION != TRUE) {
             </table>
           </div>
         </div>
-        <!--//tab-pane-->
       </div>
-      <!--//tab-content-->
     </div>
-    <!--//container-fluid-->
   </div>
-  <!--//app-content-->
-
-
-  <!--//app-footer-->
   </div>
   <!--//app-wrapper-->
 

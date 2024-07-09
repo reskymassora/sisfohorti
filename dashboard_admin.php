@@ -108,7 +108,7 @@ if ($userInfo !== false) {
       <div class="container-xl">
         <h1 class="app-page-title">Dashboard</h1>
         <div class="row g-4 mb-4">
-         
+
           <div class="col-6 col-lg-3">
             <div class="app-card app-card-stat shadow-sm h-100">
               <div class="app-card-body p-3 p-lg-4">
@@ -118,7 +118,7 @@ if ($userInfo !== false) {
               <a class="app-card-link-mask" href="#"></a>
             </div>
           </div>
-          
+
           <div class="col-6 col-lg-3">
             <div class="app-card app-card-stat shadow-sm h-100">
               <div class="app-card-body p-3 p-lg-4">
@@ -133,7 +133,9 @@ if ($userInfo !== false) {
             <div class=" bg-success app-card app-card-stat shadow-sm h-100 border border-success">
               <div class="app-card-body p-3 p-lg-4">
                 <h4 class="stats-type mb-1 text-white">Total Produksi <br> Per Komoditi</h4>
-                <div class="bg-white"><hr></div>
+                <div class="bg-white">
+                  <hr>
+                </div>
                 <a class="btn app-btn-secondary deleteButton p-2">Tampilkan</a>
               </div>
               <a class="app-card-link-mask" href="totalProduksiKomoditi.php"></a>
@@ -188,8 +190,8 @@ if ($userInfo !== false) {
                           <td class="cell">Rp <?= $data['hktppm'] ?></td>
                           <td class="cell"><?= $data['tanggal'] ?></td>
                           <td class="cell">
-                            <a class="btn app-btn-primary p-2" href="edit.php?id=<?= urlencode($data["id"]) ?>">Edit</a>
-                            <a class="btn app-btn-secondary deleteButton p-2" href="delete.php?id=<?= urlencode($data['id']) ?>">Delete</a>
+                            <a class="btn app-btn-primary p-2" href="edit.php?id=<?= urlencode($data["id"]) ?>">Ubah</a>
+                            <a class="btn app-btn-secondary deleteButton p-2" href="delete.php?id=<?= urlencode($data['id']) ?>">Hapus</a>
                           </td>
                         </tr>
                         <?php $i++; ?>
@@ -209,7 +211,7 @@ if ($userInfo !== false) {
   </div>
 
   <?php
-    require 'navigation/footer.php';
+  require 'navigation/footer.php';
   ?>
 
   <!-- Javascript -->
@@ -306,15 +308,34 @@ if ($userInfo !== false) {
             <td class="cell">Rp ${item.hktppm}</td>
             <td class="cell">${item.tanggal}</td>
             <td class="cell">
-              <a class="btn app-btn-primary p-2" href="edit.php?id=${encodeURIComponent(item.id)}">Edit</a>
-              <a class="btn app-btn-secondary deleteButton p-2" href="delete.php?id=${encodeURIComponent(item.id)}">Delete</a>
+              <a class="btn app-btn-primary p-2" href="edit.php?id=${encodeURIComponent(item.id)}">Ubah</a>
+              <a class="btn app-btn-secondary deleteButton p-2" href="delete.php?id=${encodeURIComponent(item.id)}">Hapus</a>
             </td>
             `;
           tbody.appendChild(row);
         });
-
         table.appendChild(tbody);
         resultsDiv.appendChild(table);
+
+        // Event listener untuk tombol hapus
+        document.querySelectorAll('.deleteButton').forEach(button => {
+          button.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            Swal.fire({
+              title: 'Apakah yakin ingin menghapus data?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Ya, hapus!',
+              cancelButtonText: 'Batal'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = `delete.php?id=${id}`;
+              }
+            });
+          });
+        });
       } else {
         resultsDiv.innerHTML = '<p>No results found</p>';
       }

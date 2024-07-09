@@ -34,13 +34,7 @@
 
   $page = 1;
 
-
-
   $daftarTanaman = tampil_data("SELECT * FROM dataTanaman");
-
-  $totalLuasTanam = total_luas_lahan("SELECT SUM(luasLahan) as totalLuasLahan FROM dataTanaman");
-
-  $totalLuasPanen = total_luas_panen("SELECT SUM(luasPanen) as totalLuasPanen FROM dataTanaman");
 
   ?>
 
@@ -48,7 +42,6 @@
     <h2 class="mb-3 text-center mt-4" id="tabel_komoditas">INFORMASI KOMODITAS</h2>
   </div>
 
-  <div class="app-search-box col mb-3 mt-4">
     <form class="app-search-form" method="post">
       <input type="text" id="search" placeholder="Search... [ Nama distrik, Nama komoditas ]" name="keyword" class="form-control search-input" />
     </form>
@@ -97,7 +90,7 @@
         </div>
       </div>
     </div>
-  </div>
+
 
   <script>
     // Fungsi untuk menangani pencarian
