@@ -219,7 +219,8 @@ if ($userInfo !== false) {
   <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
   <script>
-    document.querySelectorAll('.deleteButton').forEach(function(button) {
+  function addDeleteConfirmation(buttons) {
+    buttons.forEach(function(button) {
       button.addEventListener('click', function(event) {
         event.preventDefault();
         const deleteUrl = this.href;
@@ -243,104 +244,92 @@ if ($userInfo !== false) {
         return false;
       });
     });
+  }
 
-    //Search
-    function handleSearch() {
-      const query = document.getElementById('search').value;
-      const mainTable = document.getElementById('main-table');
-      const resultsDiv = document.getElementById('results');
+  // Inisialisasi event listener untuk tombol hapus pada halaman awal
+  addDeleteConfirmation(document.querySelectorAll('.deleteButton'));
 
-      if (query.length > 2) { // Memulai pencarian jika input lebih dari 2 karakter
-        mainTable.classList.add('hidden'); // Sembunyikan tabel utama
-        mainTable.classList.remove('visible');
-        fetch(`function.php?action=search&q=${encodeURIComponent(query)}`)
-          .then(response => response.json())
-          .then(data => {
-            displayResults(data);
-          })
-          .catch(error => console.error('Error:', error));
-      } else {
-        mainTable.classList.remove('hidden'); // Tampilkan kembali tabel utama
-        mainTable.classList.add('visible');
-        resultsDiv.innerHTML = ''; // Bersihkan hasil pencarian
-      }
+  //Search
+  function handleSearch() {
+    const query = document.getElementById('search').value;
+    const mainTable = document.getElementById('main-table');
+    const resultsDiv = document.getElementById('results');
+
+    if (query.length > 2) { // Memulai pencarian jika input lebih dari 2 karakter
+      mainTable.classList.add('hidden'); // Sembunyikan tabel utama
+      mainTable.classList.remove('visible');
+      fetch(`function.php?action=search&q=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => {
+          displayResults(data);
+        })
+        .catch(error => console.error('Error:', error));
+    } else {
+      mainTable.classList.remove('hidden'); // Tampilkan kembali tabel utama
+      mainTable.classList.add('visible');
+      resultsDiv.innerHTML = ''; // Bersihkan hasil pencarian
     }
+  }
 
-    // Event listener untuk input pencarian
-    document.getElementById('search').addEventListener('input', handleSearch);
+  // Event listener untuk input pencarian
+  document.getElementById('search').addEventListener('input', handleSearch);
 
-    // Fungsi untuk menampilkan hasil pencarian
-    function displayResults(data) {
-      const resultsDiv = document.getElementById('results');
-      resultsDiv.innerHTML = '';
+  // Fungsi untuk menampilkan hasil pencarian
+  function displayResults(data) {
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
 
-      if (data.length > 0) {
-        const table = document.createElement('table');
-        table.className = 'table app-table-hover mb-0 text-left';
+    if (data.length > 0) {
+      const table = document.createElement('table');
+      table.className = 'table app-table-hover mb-0 text-left';
 
-        const thead = document.createElement('thead');
-        thead.innerHTML = `
-          <tr>
-            <th class="cell">No.</th>
-            <th class="cell">Distrik</th>
-            <th class="cell">Komoditas</th>
-            <th class="cell">Luas Tanam <br> (HA)</th>
-            <th class="cell">Luas Panen <br> (HA)</th>
-            <th class="cell">Data Produksi <br> (KW)</th>
-            <th class="cell">Harga Komoditi Tingkat <br> Petani </th>
-            <th class="cell">Tanggal</th>
-            <th class="cell">Tindakan</th>
-          </tr>
+      const thead = document.createElement('thead');
+      thead.innerHTML = `
+        <tr>
+          <th class="cell">No.</th>
+          <th class="cell">Distrik</th>
+          <th class="cell">Komoditas</th>
+          <th class="cell">Luas Tanam <br> (HA)</th>
+          <th class="cell">Luas Panen <br> (HA)</th>
+          <th class="cell">Data Produksi <br> (KW)</th>
+          <th class="cell">Harga Komoditi Tingkat <br> Petani </th>
+          <th class="cell">Tanggal</th>
+          <th class="cell">Tindakan</th>
+        </tr>
+        `;
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+
+      data.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="cell">${index + 1}</td>
+          <td class="cell">${item.distrik}</td>
+          <td class="cell">${item.komoditas}</td>
+          <td class="cell">${item.luasLahan}</td>
+          <td class="cell">${item.luasPanen}</td>
+          <td class="cell">${item.dataProduksi}</td>
+          <td class="cell">Rp ${item.hktppm}</td>
+          <td class="cell">${item.tanggal}</td>
+          <td class="cell">
+            <a class="btn app-btn-primary p-2" href="edit.php?id=${encodeURIComponent(item.id)}">Ubah</a>
+            <a class="btn app-btn-secondary deleteButton p-2" href="delete.php?id=${encodeURIComponent(item.id)}">Hapus</a>
+          </td>
           `;
-        table.appendChild(thead);
+        tbody.appendChild(row);
+      });
+      table.appendChild(tbody);
+      resultsDiv.appendChild(table);
 
-        const tbody = document.createElement('tbody');
-
-        data.forEach((item, index) => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td class="cell">${index + 1}</td>
-            <td class="cell">${item.distrik}</td>
-            <td class="cell">${item.komoditas}</td>
-            <td class="cell">${item.luasLahan}</td>
-            <td class="cell">${item.luasPanen}</td>
-            <td class="cell">${item.dataProduksi}</td>
-            <td class="cell">Rp ${item.hktppm}</td>
-            <td class="cell">${item.tanggal}</td>
-            <td class="cell">
-              <a class="btn app-btn-primary p-2" href="edit.php?id=${encodeURIComponent(item.id)}">Ubah</a>
-              <a class="btn app-btn-secondary deleteButton p-2" href="delete.php?id=${encodeURIComponent(item.id)}">Hapus</a>
-            </td>
-            `;
-          tbody.appendChild(row);
-        });
-        table.appendChild(tbody);
-        resultsDiv.appendChild(table);
-
-        // Event listener untuk tombol hapus
-        document.querySelectorAll('.deleteButton').forEach(button => {
-          button.addEventListener('click', function() {
-            const id = this.getAttribute('data-id');
-            Swal.fire({
-              title: 'Apakah yakin ingin menghapus data?',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Ya, hapus!',
-              cancelButtonText: 'Batal'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                window.location.href = `delete.php?id=${id}`;
-              }
-            });
-          });
-        });
-      } else {
-        resultsDiv.innerHTML = '<p>No results found</p>';
-      }
+      // Tambahkan event listener untuk tombol hapus pada hasil pencarian
+      addDeleteConfirmation(document.querySelectorAll('.deleteButton'));
+    } else {
+      resultsDiv.innerHTML = '<p>No results found</p>';
     }
-  </script>
+  }
+</script>
+
 
   <!-- Charts JS -->
   <script src="assets/plugins/chart.js/chart.min.js"></script>
