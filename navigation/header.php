@@ -1,4 +1,3 @@
-
 <header class="app-header fixed-top">
   <div class="app-header-inner">
     <div class="container-fluid py-2">
@@ -21,7 +20,7 @@
 
           <div class="app-utilities col-auto me-4">
             <div class="app-utility-item app-user-dropdown dropdown">
-              <span class="me-2"> <?=$fullname?></span>
+              <span class="me-2"> <?= $fullname ?></span>
               <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                 <img class="rounded-circle" src="assets/images/profiles/<?= $profilePhoto ?>" alt="user profile" />
               </a>
@@ -34,7 +33,7 @@
                   <hr class="dropdown-divider" />
                 </li>
                 <li>
-                  <a class="dropdown-item" href="logout.php">Log Out</a>
+                  <a id="logoutButton" class="dropdown-item" href="logout.php">Log Out</a>
                 </li>
               </ul>
             </div>
@@ -70,22 +69,44 @@
 </header>
 
 <script>
+  //Update clock
   function updateClock() {
     const now = new Date();
-    
+
     const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
     const day = days[now.getDay()];
-    
+
     const hours = now.getHours().toString().padStart(2, '0');
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const seconds = now.getSeconds().toString().padStart(2, '0');
-    
+
     document.getElementById('day').textContent = day;
     document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
-}
+  }
 
-setInterval(updateClock, 1000);
-updateClock(); // panggil sekali saat halaman dimuat untuk menampilkan waktu segera
+  setInterval(updateClock, 1000);
+  updateClock(); // panggil sekali saat halaman dimuat untuk menampilkan waktu segera
 
+  
+  //Konfirmasi Logout
+  document.getElementById('logoutButton').addEventListener('click', function(event) {
+      event.preventDefault(); // Cegah aksi default tautan
+
+      Swal.fire({
+        title: 'Yakin ingin keluar?',
+        text: "Anda akan keluar dari sesi ini!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, keluar!',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Arahkan ke URL logout jika pengguna mengonfirmasi
+          window.location.href = 'logout.php';
+        }
+      });
+    });
 </script>
 <!--//app-header-->
