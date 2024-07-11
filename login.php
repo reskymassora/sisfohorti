@@ -66,7 +66,7 @@
 				<div class="app-auth-body mx-auto">
 					<div class="app-auth-branding mb-4"><a class="app-logo" href="#"><img class="logo-icon me-2" src="assets/images/logo-utama.jpeg" alt="logo"></a></div>
 					<h2 class="auth-heading text-center mb-3 text-success">Simfoni Hortikultura</h2>
-					<h2 class="auth-heading text-center mb-5">Simfoni Hortikultura <br> Dinas Tanaman Pangan Hortikultura Dan Perkebunan <br> Kabupaten Mimika</h2>
+					<h2 class="auth-heading text-center mb-5">Dinas Tanaman Pangan Hortikultura Dan Perkebunan <br> Kabupaten Mimika</h2>
 					<div class="auth-form-container text-start">
 						<form class="auth-form login-form" method="post">
 							<div class="email mb-3">
