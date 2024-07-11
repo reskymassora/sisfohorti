@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "simfoni_hortikultura"; // Ganti dengan nama database Anda
+$username = "u832397905_R35ky";
+$password = "r35kym4550r4";
+$dbname = "u832397905_simfonidb"; // Ganti dengan nama database Anda
 
 // Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);
