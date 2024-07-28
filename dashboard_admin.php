@@ -190,7 +190,9 @@ if ($userInfo !== false) {
                           <td class="cell">Rp <?= $data['hktppm'] ?></td>
                           <td class="cell"><?= $data['tanggal'] ?></td>
                           <td class="cell">
-                            <a class="btn app-btn-primary p-2" href="edit.php?id=<?= urlencode($data["id"]) ?>">Ubah</a>
+                            <a class="btn app-btn-primary p-2" href="edit.php?id=<?= urlencode($data["id"]) ?>">
+                              <i class="bi bi-pencil-square"></i>
+                            </a>
                             <a class="btn app-btn-secondary deleteButton p-2" href="delete.php?id=<?= urlencode($data['id']) ?>">Hapus</a>
                           </td>
                         </tr>
