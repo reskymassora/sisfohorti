@@ -126,7 +126,7 @@ if ($userInfo !== false) {
                       <tr>
                         <th class="cell">No.</th>
                         <th class="cell">Daftar Komoditas</th>
-                        <th class="cell">Total Data Produksi</th>
+                        <th class="cell">Total Data Produksi (KW)</th>
                       </tr>
                     </thead>
 
@@ -136,7 +136,7 @@ if ($userInfo !== false) {
                         <tr>
                           <td class="cell"><?= $i; ?></td>
                           <td class="cell"><?= $data['daftarKomoditas'] ?></td>
-                          <td class="cell"><?= rtrim(rtrim($data['totalDataProduksi'], '0'), '.') ?> KW</td>
+                          <td class="cell"><?= rtrim(rtrim($data['totalDataProduksi'], '0'), '.') ?></td>
                         </tr>
                         <?php $i++; ?>
                       <?php endforeach; ?>
