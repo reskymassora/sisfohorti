@@ -197,13 +197,6 @@
               <div class="text-center mt-3">
                 <button type="submit" name="change" class="btn app-btn-primary btn-block theme-btn mx-auto">Simpan</button>
               </div>
-
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="showPassword">
-                <label class="form-check-label" for="showPassword">
-                  Tampilkan
-                </label>
-              </div>
             </form>
           </div><!--//auth-form-container-->
         </div><!--//auth-body-->
