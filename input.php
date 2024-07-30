@@ -174,6 +174,7 @@ if ($userInfo !== false) {
                   <td>
                     <select class="form-select" name="komoditas" id="#komoditas">
                       <option value="">Pilih</option>
+                      <option value="ANGGUR">ANGGUR</option>
                       <option value="BUNCIS">BUNCIS</option>
                       <option value="KETIMUN">KETIMUN</option>
                       <option value="LABU SIAM">LABU SIAM</option>

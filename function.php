@@ -79,7 +79,6 @@ function total_luas_panen($query)
 }
 
 
-
 //Query total potensi lahan
 function total_potensi_lahan($query)
 {
