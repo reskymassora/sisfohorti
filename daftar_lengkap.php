@@ -19,11 +19,12 @@
       display: visible;
       /* Secara default, tampilkan tabel utama */
     }
+
     #main-table.hidden {
       display: none;
     }
   </style>
-  
+
 </head>
 
 <body class="container">
@@ -38,58 +39,77 @@
 
   ?>
 
-  <div >
+  <div>
     <h2 class="mb-3 text-center mt-4" id="tabel_komoditas">INFORMASI KOMODITAS</h2>
   </div>
 
-    <form class="app-search-form" method="post">
-      <input type="text" id="search" placeholder="Search... [ Nama distrik, Nama komoditas ]" name="keyword" class="form-control search-input" />
-    </form>
+  <form class="app-search-form" method="post">
+    <input type="text" id="search" placeholder="Search... [ Nama distrik, Nama komoditas ]" name="keyword" class="form-control search-input" />
+  </form>
 
-    <!--//row-->
-    <div class="tab-content mt-3" id="orders-table-tab-content">
-      <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
-        <div class="app-card app-card-orders-table shadow-sm mb-5">
-          <div class="app-card-body">
-            <div id="results" class="tab-content table-responsive" id="orders-table-tab-content">
-              <!-- Tabel hasil pencarian akan dimasukkan di sini oleh JavaScript -->
-            </div>
-            <div class="table-responsive">
-              <table class="table app-table-hover mb-0 text-left" id="main-table">
-                <thead>
+  <!-- Button Cetak PDF -->
+  <a class="btn btn-danger text-white mt-3" href="laporanpdf.php" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+      <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293z" />
+      <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+    </svg>
+    Download PDF
+  </a>
+
+  <!-- Button cetak Excel -->
+  <a class="btn btn-success text-white mt-3" href="laporanexcel.php" target="_blank">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+      <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293z" />
+      <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+    </svg>
+    Download Excel
+  </a>
+
+
+  <!--//row-->
+  <div class="tab-content mt-3" id="orders-table-tab-content">
+    <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+      <div class="app-card app-card-orders-table shadow-sm mb-5">
+        <div class="app-card-body">
+          <div id="results" class="tab-content table-responsive" id="orders-table-tab-content">
+            <!-- Tabel hasil pencarian akan dimasukkan di sini oleh JavaScript -->
+          </div>
+          <div class="table-responsive">
+            <table class="table app-table-hover mb-0 text-left" id="main-table">
+              <thead>
+                <tr>
+                  <th class="cell">No.</th>
+                  <th class="cell">Distrik</th>
+                  <th class="cell">Komoditas</th>
+                  <th class="cell">Luas Tanam <br> (HA)</th>
+                  <th class="cell">Luas Panen <br> (HA)</th>
+                  <th class="cell">Data Produksi <br> (KW)</th>
+                  <th class="cell">Harga Komoditi Tingkat <br> Petani (Minggu)</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <?php $i = 1; ?>
+                <?php foreach ($daftarTanaman as $data) : ?>
                   <tr>
-                    <th class="cell">No.</th>
-                    <th class="cell">Distrik</th>
-                    <th class="cell">Komoditas</th>
-                    <th class="cell">Luas Tanam <br> (HA)</th>
-                    <th class="cell">Luas Panen <br> (HA)</th>
-                    <th class="cell">Data Produksi <br> (KW)</th>
-                    <th class="cell">Harga Komoditi Tingkat <br> Petani (Minggu)</th>
+                    <td class="cell"><?= $i; ?></td>
+                    <td class="cell"><?= $data['distrik'] ?></td>
+                    <td class="cell"><?= $data['komoditas'] ?></td>
+                    <td class="cell"><?= $data['luasLahan'] ?></td>
+                    <td class="cell"><?= $data['luasPanen'] ?></td>
+                    <td class="cell"><?= $data['dataProduksi'] ?></td>
+                    <td class="cell">Rp <?= $data['hktppm'] ?></td>
+
                   </tr>
-                </thead>
-
-                <tbody>
-                  <?php $i = 1; ?>
-                  <?php foreach ($daftarTanaman as $data) : ?>
-                    <tr>
-                      <td class="cell"><?= $i; ?></td>
-                      <td class="cell"><?= $data['distrik'] ?></td>
-                      <td class="cell"><?= $data['komoditas'] ?></td>
-                      <td class="cell"><?= $data['luasLahan'] ?></td>
-                      <td class="cell"><?= $data['luasPanen'] ?></td>
-                      <td class="cell"><?= $data['dataProduksi'] ?></td>
-                      <td class="cell">Rp <?= $data['hktppm'] ?></td>
-
-                    </tr>
-                    <?php $i++; ?>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
-            </div>
+                  <?php $i++; ?>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
 
   <script>
