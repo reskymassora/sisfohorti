@@ -62,6 +62,7 @@ foreach ($daftarTanaman as $data) {
     $i++;
 }
 
+
 $html .= '</tbody></table>';
 
 // Menulis konten HTML ke dalam PDF
