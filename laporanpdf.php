@@ -41,6 +41,7 @@ $html = '<table border="0.5" cellpadding="4" cellspacing="0" style="border-colla
                     <th>Luas Panen <br> (HA)</th>
                     <th>Data Produksi <br> (KW)</th>
                     <th>Harga Komoditi Tingkat <br> Petani (Minggu)</th>
+                    <th>Tanggal</th>
                 </tr>
             </thead>
             <tbody>';
@@ -56,9 +57,11 @@ foreach ($daftarTanaman as $data) {
                 <td>' . $data['luasPanen'] . '</td>
                 <td>' . $data['dataProduksi'] . '</td>
                 <td>Rp ' . $data['hktppm'] . '</td>
+                <td>' . $data['tanggal'] . '</td>
               </tr>';
     $i++;
 }
+
 
 $html .= '</tbody></table>';
 
