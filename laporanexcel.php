@@ -25,6 +25,7 @@ $daftarTanaman = tampil_data("SELECT * FROM dataTanaman");
     </tr>
   </thead>
 
+  <!-- Fix tanggal -->
   <tbody>
     <?php $i = 1; ?>
     <?php foreach ($daftarTanaman as $data) : ?>
