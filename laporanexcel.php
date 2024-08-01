@@ -21,6 +21,7 @@ $daftarTanaman = tampil_data("SELECT * FROM dataTanaman");
       <th>Luas Panen <br> (HA)</th>
       <th>Data Produksi <br> (KW)</th>
       <th>Harga Komoditi Tingkat <br> Petani (Minggu)</th>
+      <th>Tanggal</th>
     </tr>
   </thead>
 
