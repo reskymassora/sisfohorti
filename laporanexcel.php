@@ -35,6 +35,7 @@ $daftarTanaman = tampil_data("SELECT * FROM dataTanaman");
         <td><?= $data['luasPanen'] ?></td>
         <td><?= $data['dataProduksi'] ?></td>
         <td>Rp <?= $data['hktppm'] ?></td>
+        <td><?= $data['tanggal'] ?></td>
       </tr>
       <?php $i++; ?>
     <?php endforeach; ?>
