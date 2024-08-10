@@ -36,6 +36,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
           <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link text-white" href="grafik_harga_user.php">Grafik Harga <span class="sr-only">(current)</span></a>
           <a class="nav-link text-white" href="#tabel_komoditas">Informasi Komoditas</a>
           <a class="btn btn-success text-white tombol" href="login.php">Login</a>
         </div>
