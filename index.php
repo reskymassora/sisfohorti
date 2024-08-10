@@ -38,7 +38,7 @@
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           <a class="nav-link" href="grafik_harga_user.php">Grafik Harga <span class="sr-only">(current)</span></a>
           <a class="nav-link" href="#tabel_komoditas">Informasi Komoditas</a>
-          <a class="btn btn-success tombol" href="login.php">Login</a>
+          <a class="btn text-white btn-success tombol" href="login.php">Login</a>
         </div>
       </div>
     </div>
