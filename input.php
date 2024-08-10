@@ -12,11 +12,11 @@ $email = $_SESSION['email'];
 $userInfo = getUserByEmail($email);
 
 if ($userInfo !== false) {
-    $fullname = $userInfo['fullname'];
-    $email = $userInfo['email'];
-    $profilePhoto = htmlspecialchars($userInfo['fotoProfil'], ENT_QUOTES, 'UTF-8');
+  $fullname = $userInfo['fullname'];
+  $email = $userInfo['email'];
+  $profilePhoto = htmlspecialchars($userInfo['fotoProfil'], ENT_QUOTES, 'UTF-8');
 } else {
-    echo "<p>Informasi pengguna tidak ditemukan.</p>";
+  echo "<p>Informasi pengguna tidak ditemukan.</p>";
 }
 
 ?>
@@ -50,21 +50,21 @@ if ($userInfo !== false) {
   <!--Logic Code -->
   <?php
   $page = 2;
- 
+
 
   // insert data
   if (isset($_POST['submit'])) {
 
-    //Cek inputan kosong atau tidak
+    // Cek inputan kosong atau tidak
     if (empty($_POST['distrik']) || empty($_POST['komoditas']) || empty($_POST['luasLahan']) || empty($_POST['luasPanen']) || empty($_POST['dp']) || empty($_POST['tanggal'])) {
       echo "<script>
-      Swal.fire({
-        title: 'Error!',
-        text: 'Data tidak boleh kosong',
-        icon: 'error',
-        confirmButtonColor: '#d42e1c',
-      })
-    </script>";
+        Swal.fire({
+            title: 'Error!',
+            text: 'Data tidak boleh kosong',
+            icon: 'error',
+            confirmButtonColor: '#d42e1c',
+        })
+        </script>";
     } else {
       // Ambil data dari form
       $distrik = strtoupper(htmlspecialchars($_POST['distrik'], ENT_QUOTES, 'UTF-8'));
@@ -74,38 +74,61 @@ if ($userInfo !== false) {
       $dp = htmlspecialchars($_POST['dp'], ENT_QUOTES, 'UTF-8');
       $hktppm = htmlspecialchars($_POST['hktppm'], ENT_QUOTES, 'UTF-8');
       $tanggal = htmlspecialchars($_POST['tanggal'], ENT_QUOTES, 'UTF-8');
-      
+
+      // Ubah format tanggal
+      $date = new DateTime($tanggal);
+      $formatted_date = $date->format('d F Y'); // Format menjadi tanggal yang sebenarnya, misal: 12 Januari 2024
+
+      // Gantikan nama bulan dengan bahasa Indonesia
+      $months = [
+        'January' => 'Januari',
+        'February' => 'Februari',
+        'March' => 'Maret',
+        'April' => 'April',
+        'May' => 'Mei',
+        'June' => 'Juni',
+        'July' => 'Juli',
+        'August' => 'Agustus',
+        'September' => 'September',
+        'October' => 'Oktober',
+        'November' => 'November',
+        'December' => 'Desember'
+      ];
+
       // Query untuk memasukkan data, tanpa menyertakan kolom id
       $query = "INSERT INTO dataTanaman (distrik, komoditas, luasLahan, luasPanen, dataProduksi, hktppm, tanggal) 
-                VALUES ('$distrik', '$komoditas', '$luasLahan', '$luasPanen', '$dp', '$hktppm', '$tanggal')";
+                  VALUES ('$distrik', '$komoditas', '$luasLahan', '$luasPanen', '$dp', '$hktppm', '$tanggal')";
 
       // Eksekusi query
       if ($conn->query($query) === TRUE) {
         echo "<script>
-                  Swal.fire({
-                    title: 'Sukses!',
-                    text: 'Data berhasil disimpan.',
-                    icon: 'success',
-                    confirmButtonColor: '#069118',
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = 'dashboard_admin.php';
-                    }
-                  });
-                </script>";
+                      Swal.fire({
+                        title: 'Sukses!',
+                        text: 'Data berhasil disimpan.',
+                        icon: 'success',
+                        confirmButtonColor: '#069118',
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = 'dashboard_admin.php';
+                        }
+                      });
+                    </script>";
       } else {
         echo "
-        <script>
-        Swal.fire({
-          title: 'Error!',
-          text: 'Data gagal disimpan.',
-          icon: 'error',
-          confirmButtonText: 'Coba lagi'
-        });
-      </script>";
+            <script>
+            Swal.fire({
+              title: 'Error!',
+              text: 'Data gagal disimpan.',
+              icon: 'error',
+              confirmButtonText: 'Coba lagi'
+            });
+          </script>";
       }
     }
   }
+
+  // end of insert data
+
   ?>
   <!-- End Of Logic Code -->
 
@@ -203,7 +226,6 @@ if ($userInfo !== false) {
                       <option value="NANGKA">NANGKA</option>
                       <option value="JAMBU BIJI">JAMBU BIJI</option>
                       <option value="JAMBU AIR">JAMBU AIR</option>
-
                     </select>
                   </td>
                 </tr>
@@ -240,7 +262,7 @@ if ($userInfo !== false) {
                     <label for="#potensiLahan">Harga Komoditi Tingkat Petani</label>
                   </td>
                   <td>
-                    <input id="#potensiLahan" type="number" class="form-control" name="hktppm" step="0.01" min="0"/>
+                    <input id="#potensiLahan" type="number" class="form-control" name="hktppm" step="0.01" min="0" />
                   </td>
                 </tr>
 
@@ -276,13 +298,13 @@ if ($userInfo !== false) {
       <!--//tab-content-->
     </div>
     <!--//container-fluid-->
-    </div>
+  </div>
 
   </div>
   <!--//app-wrapper-->
 
   <?php
-    require 'navigation/footer.php';
+  require 'navigation/footer.php';
   ?>
 
   <script>

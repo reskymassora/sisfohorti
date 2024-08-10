@@ -50,8 +50,8 @@ if ($_SESSION != TRUE) {
   // edit data
   if (isset($_POST['submit'])) {
     // Cek inputan kosong atau tidak
-    if (empty($_POST['distrik']) || empty($_POST['komoditas']) || empty($_POST['luasLahan']) || empty($_POST['luasPanen']) || empty($_POST['dp']) || empty($_POST['tanggal'])) {
-      echo "<script>
+    if (empty($_POST['distrik']) || empty($_POST['komoditas']) || empty($_POST['luasLahan']) || empty($_POST['luasPanen']) || empty($_POST['dp'])) {
+        echo "<script>
         Swal.fire({
             title: 'Error!',
             text: 'Data tidak boleh kosong',
@@ -60,26 +60,25 @@ if ($_SESSION != TRUE) {
         });
         </script>";
     } else {
-      // Ambil data dari form
-      $distrik = strtoupper($_POST['distrik']);
-      $komoditas = strtoupper($_POST['komoditas']);
-      $luasLahan = $_POST['luasLahan'];
-      $luasPanen = $_POST['luasPanen'];
-      $dp = $_POST['dp'];
-      $hktppm = $_POST['hktppm'];
-      $tanggal = $_POST['tanggal'];
+        // Ambil data dari form
+        $distrik = strtoupper($_POST['distrik']);
+        $komoditas = strtoupper($_POST['komoditas']);
+        $luasLahan = $_POST['luasLahan'];
+        $luasPanen = $_POST['luasPanen'];
+        $dp = $_POST['dp'];
+        $hktppm = $_POST['hktppm'];
+        $tanggal = $data['tanggal']; // Ambil tanggal dari data sebelumnya
 
-      // Cek apakah ada perubahan data
-      if (
-        $distrik == $data['distrik'] &&
-        $komoditas == $data['komoditas'] &&
-        $luasLahan == $data['luasLahan'] &&
-        $luasPanen == $data['luasPanen'] &&
-        $dp == $data['dataProduksi'] &&
-        $hktppm == $data['hktppm'] &&
-        $tanggal == $data['tanggal']
-      ) {
-        echo "<script>
+        // Cek apakah ada perubahan data
+        if (
+            $distrik == $data['distrik'] &&
+            $komoditas == $data['komoditas'] &&
+            $luasLahan == $data['luasLahan'] &&
+            $luasPanen == $data['luasPanen'] &&
+            $dp == $data['dataProduksi'] &&
+            $hktppm == $data['hktppm']
+        ) {
+            echo "<script>
             Swal.fire({
                 title: 'Tidak ada perubahan',
                 text: 'Tidak ada data yang diubah',
@@ -87,48 +86,49 @@ if ($_SESSION != TRUE) {
                 confirmButtonColor: '#3085d6',
             });
             </script>";
-      } else {
-        // Query untuk mengupdate data
-        $query = "UPDATE dataTanaman SET
-                distrik = '$distrik',
-                komoditas = '$komoditas',
-                luasLahan = '$luasLahan',
-                luasPanen = '$luasPanen',
-                dataProduksi = '$dp',
-                hktppm = '$hktppm',
-                tanggal = '$tanggal'
-                WHERE id = '$id'";
-
-        // jalankan query
-        $result = mysqli_query($conn, $query);
-
-        // cek hasil query
-        if (mysqli_affected_rows($conn) > 0) {
-          echo "<script>
-                    Swal.fire({
-                        title: 'Berhasil!',
-                        text: 'Data berhasil diubah',
-                        icon: 'success',
-                        confirmButtonColor: '#4CAF50',
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location = 'dashboard_admin.php';
-                        }
-                    });
-                    </script>";
         } else {
-          echo "<script>
-                    Swal.fire({
-                        title: 'Gagal!',
-                        text: 'Data gagal diubah',
-                        icon: 'error',
-                        confirmButtonColor: '#d42e1c',
-                    });
-                    </script>";
+            // Query untuk mengupdate data tanpa kolom tanggal
+            $query = "UPDATE dataTanaman SET
+                    distrik = '$distrik',
+                    komoditas = '$komoditas',
+                    luasLahan = '$luasLahan',
+                    luasPanen = '$luasPanen',
+                    dataProduksi = '$dp',
+                    hktppm = '$hktppm'
+                    WHERE id = '$id'";
+
+            // Jalankan query
+            $result = mysqli_query($conn, $query);
+
+            // Cek hasil query
+            if (mysqli_affected_rows($conn) > 0) {
+                echo "<script>
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: 'Data berhasil diubah',
+                    icon: 'success',
+                    confirmButtonColor: '#4CAF50',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = 'dashboard_admin.php';
+                    }
+                });
+                </script>";
+            } else {
+                echo "<script>
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: 'Data gagal diubah',
+                    icon: 'error',
+                    confirmButtonColor: '#d42e1c',
+                });
+                </script>";
+            }
         }
-      }
     }
-  }
+}
+
+
   ?>
 
   <!-- End of logic code -->
@@ -231,6 +231,7 @@ if ($_SESSION != TRUE) {
                   <td>
                     <select class="form-select" name="komoditas" id="komoditas">
                       <option value="">Pilih</option>
+                      <option value="ANGGUR" <?= $komoditas == 'ANGGUR' ? 'selected' : '' ?>>ANGGUR</option>
                       <option value="BUNCIS" <?= $komoditas == 'BUNCIS' ? 'selected' : '' ?>>BUNCIS</option>
                       <option value="KETIMUN" <?= $komoditas == 'KETIMUN' ? 'selected' : '' ?>>KETIMUN</option>
                       <option value="LABU SIAM" <?= $komoditas == 'LABU SIAM' ? 'selected' : '' ?>>LABU SIAM</option>
@@ -301,12 +302,13 @@ if ($_SESSION != TRUE) {
 
                 <tr>
                   <td>
-                    <label for="#tanggal">Tanggal</label>
+                    <label hidden for="tanggal">Tanggal</label>
                   </td>
                   <td>
-                    <input id="#tanggal" type="text" class="form-control" name="tanggal" value="<?= $data["tanggal"] ?>" require />
+                    <input id="tanggal" type="date" class="form-control" name="tanggal" value="<?= htmlspecialchars($data["tanggal"]) ?>" hidden />
                   </td>
                 </tr>
+
 
                 <!-- Tambah Jarak -->
                 <tr>

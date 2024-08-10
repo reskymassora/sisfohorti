@@ -1,8 +1,9 @@
 <?php
 $servername = "localhost";
+
 $username = "u832397905_R35ky";
 $password = "R35kym4550r4";
-$dbname = "u832397905_simfonidb"; // Ganti dengan nama database Anda
+$dbname = "u832397905_simfonidb"; 
 
 // $servername = "localhost";
 // $username = "root";
@@ -102,7 +103,7 @@ function delete($id)
   return mysqli_affected_rows($conn);
 }
 
-
+//Function cari
 function cari($keyword){
     
     // Membuat koneksi ke database
@@ -142,7 +143,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'search') {
 }
 
 
-
+//function get user
 function getUserByEmail($email) {
     global $conn;
     // Query untuk mendapatkan informasi pengguna berdasarkan email
