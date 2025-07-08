@@ -195,13 +195,24 @@ ini_set('display_errors', 1);
         const thead = document.createElement('thead');
         thead.innerHTML = `
         <tr>
-          <th class="cell">No.</th>
-          <th class="cell">Distrik</th>
-          <th class="cell">Komoditas</th>
-          <th class="cell">Luas Tanam <br> (HA)</th>
-          <th class="cell">Luas Panen <br> (HA)</th>
-          <th class="cell">Data Produksi <br> (KW)</th>
-          <th class="cell">Harga Komoditi Tingkat <br> Petani (Minggu)</th>
+          <th rowspan="2" class="cell">No.</th>
+          <th rowspan="2" class="cell">Distrik</th>
+          <th rowspan="2" class="cell">Komoditas</th>
+          <th rowspan="2" class="cell">Luas Lahan (HA)</th>
+          <th rowspan="2" class="cell">Luas Tanam Akhir Bulan Lalu (HA)</th>
+          <th colspan="2" class="cell text-center">Luas Panen (HA)</th>
+          <th rowspan="2" class="cell">Luas Rusak (HA)</th>
+          <th rowspan="2" class="cell">Luas Penanaman Baru (HA)</th>
+          <th rowspan="2" class="cell">Luas Tanaman Akhir Bulan Laporan (HA)</th>
+          <th colspan="2" class="cell text-center">Data Produksi (KW)</th>
+          <th rowspan="2" class="cell">Harga Komoditi Tingkat Petani</th>
+          <th rowspan="2" class="cell">Tanggal</th>
+        </tr>
+        <tr>
+          <th class="cell">Habis Dibongkar</th>
+          <th class="cell">Belum Habis</th>
+          <th class="cell">Dipanen Habis / Dibongkar</th>
+          <th class="cell">Belum Habis</th>
         </tr>
       `;
         table.appendChild(thead);
@@ -215,9 +226,16 @@ ini_set('display_errors', 1);
           <td class="cell">${item.distrik}</td>
           <td class="cell">${item.komoditas}</td>
           <td class="cell">${item.luasLahan}</td>
-          <td class="cell">${item.luasPanen}</td>
-          <td class="cell">${item.dataProduksi}</td>
+          <td class="cell">${item.luasTanamAkhirBulanLalu}</td>
+          <td class="cell">${item.luasPanenHabisDiBongkar}</td>
+          <td class="cell">${item.luasPanenBelumHabis}</td>
+          <td class="cell">${item.luasRusak}</td>
+          <td class="cell">${item.luasPenanamanBaru}</td>
+          <td class="cell">${item.luasTanamAkhirBulanLaporan}</td>
+          <td class="cell">${item.dataProduksiDiPanenHabis}</td>
+          <td class="cell">${item.dataProduksiBelumHabis}</td>
           <td class="cell">Rp ${item.hktppm}</td>
+          <td class="cell">${item.tanggal}</td>
         `;
           tbody.appendChild(row);
         });
