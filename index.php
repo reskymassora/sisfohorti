@@ -113,35 +113,54 @@
     <div class="container">
       <h2 class="mb-4 text-center" id="tabel_komoditas">INFORMASI KOMODITAS</h2>
       <div class="table-responsive">
-        <table class="table app-table-hover mb-0 text-left">
-          <thead>
-            <tr class="bg-success text-white">
-              <th class="cell">No.</th>
-              <th class="cell">Distrik</th>
-              <th class="cell">Komoditas</th>
-              <th class="cell">Luas <br> Tanam (HA)</th>
-              <th class="cell">Luas <br> Panen (HA)</th>
-              <th class="cell">Data <br> Produksi (KW)</th>
-              <th class="cell">Harga Komoditi Tingkat <br> Petani</th>
-            </tr>
-          </thead>
+        <table class="table app-table-hover mb-0 text-left" id="main-table">
+                    <thead>
+                      <tr>
+                        <th rowspan="2">No.</th>
+                        <th rowspan="2">Distrik</th>
+                        <th rowspan="2">Komoditas</th>
+                        <th rowspan="2">Luas Lahan (HA)</th>
+                        <th rowspan="2">Luas Tanam Akhir Bulan Lalu (HA)</th>
+                        <th colspan="2">Luas Panen (HA)</th>
+                        <th rowspan="2">Luas Rusak (HA)</th>
+                        <th rowspan="2">Luas Penanaman Baru (HA)</th>
+                        <th rowspan="2">Luas Tanaman Akhir Bulan Laporan (HA)</th>
+                        <th colspan="2">Data Produksi (KW)</th>
+                        <th rowspan="2">Harga Komoditi Tingkat Petani</th>
+                        <th rowspan="2">Tanggal</th>
+                      </tr>
+                      <tr>
+                        <th>Habis Dibongkar (HA)</th>
+                        <th>Belum Habis (HA)</th>
+                        <th>Dipanen Habis / Dibongkar (HA)</th>
+                        <th>Belum Habis (HA)</th>
+                      </tr>
+                    </thead>
 
-          <tbody class="table-group-divider">
-            <?php $i = 1; ?>
-            <?php foreach ($daftarTanaman as $data) : ?>
-              <tr>
-                <td><?= $i; ?></td>
-                <td><?= $data['distrik'] ?></td>
-                <td><?= $data['komoditas'] ?></td>
-                <td><?= $data['luasLahan'] ?></td>
-                <td><?= $data['luasPanen'] ?></td>
-                <td><?= $data['dataProduksi'] ?></td>
-                <td><?= $data['hktppm'] ?></td>
-              </tr>
-              <?php $i++; ?>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+
+                    <tbody>
+                      <?php $i = 1; ?>
+                      <?php foreach ($daftarTanaman as $data) : ?>
+                        <tr>
+                          <td class="cell"><?= $i; ?></td>
+                          <td class="cell"><?= $data['distrik'] ?></td>
+                          <td class="cell"><?= $data['komoditas'] ?></td>
+                          <td class="cell"><?= $data['luasLahan'] ?></td>
+                          <td class="cell"><?= $data['luasTanamAkhirBulanLalu'] ?></td>
+                          <td class="cell"><?= $data['luasPanenHabisDiBongkar'] ?></td>
+                          <td class="cell"><?= $data['luasPanenBelumHabis'] ?></td>
+                          <td class="cell"><?= $data['luasRusak'] ?></td>
+                          <td class="cell"><?= $data['luasPenanamanBaru'] ?></td>
+                          <td class="cell"><?= $data['luasTanamAkhirBulanLaporan'] ?></td>
+                          <td class="cell"><?= $data['dataProduksiDiPanenHabis'] ?></td>
+                          <td class="cell"><?= $data['dataProduksiBelumHabis'] ?></td>
+                          <td class="cell">Rp <?= $data['hktppm'] ?></td>
+                          <td class="cell"><?= $data['tanggal'] ?></td>
+                        </tr>
+                        <?php $i++; ?>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
       </div>
       <div class="text-center mt-3">
         <button type="button" onclick="window.location.href='daftar_lengkap.php'" class="btn btn-success text-white">Selengkapnya >></button>
