@@ -1,3 +1,8 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +15,29 @@
 
   <!-- App CSS -->
   <link id="theme-style" rel="stylesheet" href="assets/css/portal.css" />
+  <style>
+    .table-responsive {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    #main-table th,
+    #main-table td {
+      white-space: nowrap;
+      /* Jangan biarkan teks pindah baris */
+    }
+
+    #main-table {
+      min-width: max-content;
+      /* Pastikan tabel tidak memaksa wrap */
+    }
+
+    #main-table thead th[colspan] {
+      text-align: center;
+      vertical-align: middle;
+    }
+  </style>
+
 
   <link rel="shortcut icon" href="assets/images/logo-utama.jpeg">
 
@@ -112,55 +140,74 @@
   <section>
     <div class="container">
       <h2 class="mb-4 text-center" id="tabel_komoditas">INFORMASI KOMODITAS</h2>
-      <div class="table-responsive">
-        <table class="table app-table-hover mb-0 text-left" id="main-table">
-                    <thead>
-                      <tr>
-                        <th rowspan="2">No.</th>
-                        <th rowspan="2">Distrik</th>
-                        <th rowspan="2">Komoditas</th>
-                        <th rowspan="2">Luas Lahan (HA)</th>
-                        <th rowspan="2">Luas Tanam Akhir Bulan Lalu (HA)</th>
-                        <th colspan="2">Luas Panen (HA)</th>
-                        <th rowspan="2">Luas Rusak (HA)</th>
-                        <th rowspan="2">Luas Penanaman Baru (HA)</th>
-                        <th rowspan="2">Luas Tanaman Akhir Bulan Laporan (HA)</th>
-                        <th colspan="2">Data Produksi (KW)</th>
-                        <th rowspan="2">Harga Komoditi Tingkat Petani</th>
-                        <th rowspan="2">Tanggal</th>
-                      </tr>
-                      <tr>
-                        <th>Habis Dibongkar (HA)</th>
-                        <th>Belum Habis (HA)</th>
-                        <th>Dipanen Habis / Dibongkar (HA)</th>
-                        <th>Belum Habis (HA)</th>
-                      </tr>
-                    </thead>
+      <!--//row-->
+      <div class="tab-content" id="orders-table-tab-content">
+        <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+          <div class="app-card app-card-orders-table shadow-sm mb-5">
+            <div class="app-card-body">
+
+              <div id="results" class="tab-content table-responsive" id="orders-table-tab-content">
+                <!-- Tabel hasil pencarian akan dimasukkan di sini oleh JavaScript -->
+              </div>
+
+              <div class="table-responsive">
+                <!-- Tabel Utama -->
+                <table class="table app-table-hover mb-0 text-left" id="main-table">
+                  <thead>
+                    <tr>
+                      <th rowspan="2">No.</th>
+                      <th rowspan="2">Distrik</th>
+                      <th rowspan="2">Komoditas</th>
+                      <th rowspan="2">Luas Lahan (HA)</th>
+                      <th rowspan="2">Luas Tanam Akhir Bulan Lalu (HA)</th>
+                      <th colspan="2" style="text-align: center;">Luas Panen (HA)</th>
+                      <th rowspan="2">Luas Rusak (HA)</th>
+                      <th rowspan="2">Luas Penanaman Baru (HA)</th>
+                      <th rowspan="2">Luas Tanaman Akhir Bulan Laporan (HA)</th>
+                      <th colspan="2" style="text-align: center;">Data Produksi (KW)</th>
+                      <th rowspan="2">Harga Komoditi Tingkat Petani</th>
+                      <th rowspan="2">Tanggal</th>
+                    </tr>
+                    <tr>
+                      <th>Habis Dibongkar (HA)</th>
+                      <th>Belum Habis (HA)</th>
+                      <th>Dipanen Habis / Dibongkar (HA)</th>
+                      <th>Belum Habis (HA)</th>
+                    </tr>
+                  </thead>
 
 
-                    <tbody>
-                      <?php $i = 1; ?>
-                      <?php foreach ($daftarTanaman as $data) : ?>
-                        <tr>
-                          <td class="cell"><?= $i; ?></td>
-                          <td class="cell"><?= $data['distrik'] ?></td>
-                          <td class="cell"><?= $data['komoditas'] ?></td>
-                          <td class="cell"><?= $data['luasLahan'] ?></td>
-                          <td class="cell"><?= $data['luasTanamAkhirBulanLalu'] ?></td>
-                          <td class="cell"><?= $data['luasPanenHabisDiBongkar'] ?></td>
-                          <td class="cell"><?= $data['luasPanenBelumHabis'] ?></td>
-                          <td class="cell"><?= $data['luasRusak'] ?></td>
-                          <td class="cell"><?= $data['luasPenanamanBaru'] ?></td>
-                          <td class="cell"><?= $data['luasTanamAkhirBulanLaporan'] ?></td>
-                          <td class="cell"><?= $data['dataProduksiDiPanenHabis'] ?></td>
-                          <td class="cell"><?= $data['dataProduksiBelumHabis'] ?></td>
-                          <td class="cell">Rp <?= $data['hktppm'] ?></td>
-                          <td class="cell"><?= $data['tanggal'] ?></td>
-                        </tr>
-                        <?php $i++; ?>
-                      <?php endforeach; ?>
-                    </tbody>
-                  </table>
+
+                  <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($daftarTanaman as $data) : ?>
+                      <tr>
+                        <td class="cell"><?= $i; ?></td>
+                        <td class="cell"><?= $data['distrik'] ?></td>
+                        <td class="cell"><?= $data['komoditas'] ?></td>
+                        <td class="cell"><?= $data['luasLahan'] ?></td>
+                        <td class="cell"><?= $data['luasTanamAkhirBulanLalu'] ?></td>
+                        <td class="cell"><?= $data['luasPanenHabisDiBongkar'] ?></td>
+                        <td class="cell"><?= $data['luasPanenBelumHabis'] ?></td>
+                        <td class="cell"><?= $data['luasRusak'] ?></td>
+                        <td class="cell"><?= $data['luasPenanamanBaru'] ?></td>
+                        <td class="cell"><?= $data['luasTanamAkhirBulanLaporan'] ?></td>
+                        <td class="cell"><?= $data['dataProduksiDiPanenHabis'] ?></td>
+                        <td class="cell"><?= $data['dataProduksiBelumHabis'] ?></td>
+                        <td class="cell">Rp <?= $data['hktppm'] ?></td>
+                        <td class="cell"><?= $data['tanggal'] ?></td>
+                      </tr>
+                      <?php $i++; ?>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+
+              </div>
+              <!--//table-responsive-->
+            </div>
+            <!--//app-card-body-->
+          </div>
+        </div>
       </div>
       <div class="text-center mt-3">
         <button type="button" onclick="window.location.href='daftar_lengkap.php'" class="btn btn-success text-white">Selengkapnya >></button>

@@ -6,7 +6,7 @@
 
 $servername = "localhost";
 $username = "u832397905_R35ky";
-$password = "R35kym4550r4";
+$password = "@R35kym4550r4";
 $dbname = "u832397905_simfonidb"; 
 
 // Membuat koneksi

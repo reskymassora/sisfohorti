@@ -198,7 +198,6 @@ if ($userInfo !== false) {
             <div class="app-card app-card-orders-table shadow-sm mb-5">
               <div class="app-card-body">
 
-
                 <div id="results" class="tab-content table-responsive" id="orders-table-tab-content">
                   <!-- Tabel hasil pencarian akan dimasukkan di sini oleh JavaScript -->
                 </div>
