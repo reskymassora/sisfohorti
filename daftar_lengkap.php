@@ -23,6 +23,27 @@
     #main-table.hidden {
       display: none;
     }
+
+    .table-responsive {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    #main-table th,
+    #main-table td {
+      white-space: nowrap;
+      /* Jangan biarkan teks pindah baris */
+    }
+
+    #main-table {
+      min-width: max-content;
+      /* Pastikan tabel tidak memaksa wrap */
+    }
+
+    #main-table thead th[colspan] {
+      text-align: center;
+      vertical-align: middle;
+    }
   </style>
 
 </head>
@@ -35,7 +56,7 @@
 
   $page = 1;
 
-  $daftarTanaman = tampil_data("SELECT * FROM dataTanaman");
+  $daftarTanaman = tampil_data("SELECT * FROM datatanaman");
 
   ?>
 
@@ -78,15 +99,28 @@
             <table class="table app-table-hover mb-0 text-left" id="main-table">
               <thead>
                 <tr>
-                  <th class="cell">No.</th>
-                  <th class="cell">Distrik</th>
-                  <th class="cell">Komoditas</th>
-                  <th class="cell">Luas Tanam <br> (HA)</th>
-                  <th class="cell">Luas Panen <br> (HA)</th>
-                  <th class="cell">Data Produksi <br> (KW)</th>
-                  <th class="cell">Harga Komoditi Tingkat <br> Petani (Minggu)</th>
+                  <th rowspan="2">No.</th>
+                  <th rowspan="2">Distrik</th>
+                  <th rowspan="2">Komoditas</th>
+                  <th rowspan="2">Luas Lahan (HA)</th>
+                  <th rowspan="2">Luas Tanam Akhir Bulan Lalu (HA)</th>
+                  <th colspan="2" style="text-align: center;">Luas Panen (HA)</th>
+                  <th rowspan="2">Luas Rusak (HA)</th>
+                  <th rowspan="2">Luas Penanaman Baru (HA)</th>
+                  <th rowspan="2">Luas Tanaman Akhir Bulan Laporan (HA)</th>
+                  <th colspan="2" style="text-align: center;">Data Produksi (KW)</th>
+                  <th rowspan="2">Harga Komoditi Tingkat Petani</th>
+                  <th rowspan="2">Tanggal</th>
+                </tr>
+                <tr>
+                  <th>Habis Dibongkar (HA)</th>
+                  <th>Belum Habis (HA)</th>
+                  <th>Dipanen Habis / Dibongkar (HA)</th>
+                  <th>Belum Habis (HA)</th>
                 </tr>
               </thead>
+
+
 
               <tbody>
                 <?php $i = 1; ?>
@@ -96,10 +130,16 @@
                     <td class="cell"><?= $data['distrik'] ?></td>
                     <td class="cell"><?= $data['komoditas'] ?></td>
                     <td class="cell"><?= $data['luasLahan'] ?></td>
-                    <td class="cell"><?= $data['luasPanen'] ?></td>
-                    <td class="cell"><?= $data['dataProduksi'] ?></td>
+                    <td class="cell"><?= $data['luasTanamAkhirBulanLalu'] ?></td>
+                    <td class="cell"><?= $data['luasPanenHabisDiBongkar'] ?></td>
+                    <td class="cell"><?= $data['luasPanenBelumHabis'] ?></td>
+                    <td class="cell"><?= $data['luasRusak'] ?></td>
+                    <td class="cell"><?= $data['luasPenanamanBaru'] ?></td>
+                    <td class="cell"><?= $data['luasTanamAkhirBulanLaporan'] ?></td>
+                    <td class="cell"><?= $data['dataProduksiDiPanenHabis'] ?></td>
+                    <td class="cell"><?= $data['dataProduksiBelumHabis'] ?></td>
                     <td class="cell">Rp <?= $data['hktppm'] ?></td>
-
+                    <td class="cell"><?= $data['tanggal'] ?></td>
                   </tr>
                   <?php $i++; ?>
                 <?php endforeach; ?>
