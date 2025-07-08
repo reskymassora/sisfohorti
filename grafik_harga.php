@@ -85,7 +85,7 @@ if ($userInfo !== false) {
 
       if ($intervalWaktu == 'Minggu' && !empty($bulan) && !empty($tahun)) {
         $query = "SELECT hktppm AS prices, tanggal AS dates 
-                      FROM dataTanaman 
+                      FROM datatanaman 
                       WHERE distrik = ? AND komoditas = ? 
                       AND MONTH(tanggal) = ? AND YEAR(tanggal) = ?
                       ORDER BY DAY(tanggal) ASC";

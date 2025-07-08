@@ -42,7 +42,7 @@ if ($_SESSION != TRUE) {
   $id = $_GET["id"];
 
   // query data peserta berdasarkan id
-  $data = tampil_data("SELECT * FROM datatanaman WHERE id = '$id'")[0];
+  $data = tampil_data("SELECT * FROM dataTanaman WHERE id = '$id'")[0];
 
   // Ambil data lama
   $distrik = isset($data['distrik']) ? htmlspecialchars($data['distrik'], ENT_QUOTES, 'UTF-8') : '';
@@ -122,7 +122,7 @@ if ($_SESSION != TRUE) {
             </script>";
     } else {
       // Query update data
-      $query = "UPDATE datatanaman SET
+      $query = "UPDATE dataTanaman SET
                     distrik = '$distrik',
                     komoditas = '$komoditas',
                     luasLahan = '$luasLahan',

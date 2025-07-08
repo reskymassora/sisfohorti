@@ -4,7 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 require 'function.php';
 
 // Ambil data dari database
-$daftarTanaman = tampil_data("SELECT * FROM datatanaman");
+$daftarTanaman = tampil_data("SELECT * FROM dataTanaman");
 
 // Membuat instance TCPDF (dengan orientasi Landscape)
 $pdf = new TCPDF('L', 'mm', 'A4', true, 'UTF-8', false);

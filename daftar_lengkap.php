@@ -61,7 +61,7 @@ ini_set('display_errors', 1);
 
   $page = 1;
 
-  $daftarTanaman = tampil_data("SELECT * FROM datatanaman");
+  $daftarTanaman = tampil_data("SELECT * FROM dataTanaman");
 
   ?>
 

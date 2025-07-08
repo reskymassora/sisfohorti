@@ -2,7 +2,7 @@
 require 'function.php';
 
 // Ambil data dari database
-$daftarTanaman = tampil_data("SELECT * FROM datatanaman");
+$daftarTanaman = tampil_data("SELECT * FROM dataTanaman");
 
 // Header untuk file Excel
 header("Content-Type: application/vnd.ms-excel; charset=utf-8");
