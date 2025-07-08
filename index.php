@@ -96,7 +96,7 @@ ini_set('display_errors', 1);
   <!-- Logic code -->
   <?php
 
-  $daftarTanaman = tampil_data("SELECT * FROM dataTanaman LIMIT 10");
+  $daftarTanaman = tampil_data("SELECT * FROM datatanaman LIMIT 10");
   ?>
   <!-- End Of Logic Code -->
 

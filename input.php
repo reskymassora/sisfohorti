@@ -116,7 +116,7 @@ if ($userInfo !== false) {
       ];
 
       // Query untuk memasukkan data, tanpa menyertakan kolom id
-      $query = "INSERT INTO dataTanaman (
+      $query = "INSERT INTO datatanaman (
                 distrik, 
                 komoditas, 
                 luasLahan, 
