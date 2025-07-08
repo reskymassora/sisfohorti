@@ -57,19 +57,19 @@ if ($userInfo !== false) {
 
     // Cek inputan kosong atau tidak
     if (
-      empty($_POST['distrik']) ||
-      empty($_POST['komoditas']) ||
-      empty($_POST['luasLahan']) ||
-      empty($_POST['luasTanamAkhirBulanLalu']) ||
-      empty($_POST['luasPanenHabisDiBongkar']) ||
-      empty($_POST['luasPanenBelumHabis']) ||
-      empty($_POST['luasRusak']) ||
-      empty($_POST['luasPenanamanBaru']) ||
-      empty($_POST['luasTanamAkhirBulanLaporan']) ||
-      empty($_POST['dataProduksiDiPanenHabis']) ||
-      empty($_POST['dataProduksiBelumHabis']) ||
-      empty($_POST['hktppm']) ||
-      empty($_POST['tanggal'])
+      !isset($_POST['distrik']) || $_POST['distrik'] === '' ||
+      !isset($_POST['komoditas']) || $_POST['komoditas'] === '' ||
+      !isset($_POST['luasLahan']) || $_POST['luasLahan'] === '' ||
+      !isset($_POST['luasTanamAkhirBulanLalu']) || $_POST['luasTanamAkhirBulanLalu'] === '' ||
+      !isset($_POST['luasPanenHabisDiBongkar']) || $_POST['luasPanenHabisDiBongkar'] === '' ||
+      !isset($_POST['luasPanenBelumHabis']) || $_POST['luasPanenBelumHabis'] === '' ||
+      !isset($_POST['luasRusak']) || $_POST['luasRusak'] === '' ||
+      !isset($_POST['luasPenanamanBaru']) || $_POST['luasPenanamanBaru'] === '' ||
+      !isset($_POST['luasTanamAkhirBulanLaporan']) || $_POST['luasTanamAkhirBulanLaporan'] === '' ||
+      !isset($_POST['dataProduksiDiPanenHabis']) || $_POST['dataProduksiDiPanenHabis'] === '' ||
+      !isset($_POST['dataProduksiBelumHabis']) || $_POST['dataProduksiBelumHabis'] === '' ||
+      !isset($_POST['hktppm']) || $_POST['hktppm'] === '' ||
+      !isset($_POST['tanggal']) || $_POST['tanggal'] === ''
     ) {
       echo "<script>
         Swal.fire({
