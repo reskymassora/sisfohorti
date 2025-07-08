@@ -134,11 +134,11 @@ if ($userInfo !== false) {
 
 
 
-  $daftarTanaman = tampil_data("SELECT * FROM dataTanaman");
+  $daftarTanaman = tampil_data("SELECT * FROM datatanaman");
 
-  $totalLuasTanam = total_luas_lahan("SELECT SUM(luasLahan) as totalLuasLahan FROM dataTanaman");
+  $totalLuasTanam = total_luas_lahan("SELECT SUM(luasLahan) as totalLuasLahan FROM datatanaman");
 
-  $totalLuasPanen = total_luas_panen("SELECT SUM(luasPanenHabisDiBongkar) as totalLuasPanen FROM dataTanaman");
+  $totalLuasPanen = total_luas_panen("SELECT SUM(luasPanenHabisDiBongkar) as totalLuasPanen FROM datatanaman");
 
   ?>
 
