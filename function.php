@@ -1,13 +1,13 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "u832397905_simfonidb"; 
-
 // $servername = "localhost";
 // $username = "root";
 // $password = "";
-// $dbname = "simfoni_hortikultura";
+// $dbname = "u832397905_simfonidb"; 
+
+$servername = "localhost";
+$username = "u832397905_R35ky";
+$password = "R35kym4550r4";
+$dbname = "u832397905_simfonidb"; 
 
 // Membuat koneksi
 $conn = new mysqli($servername, $username, $password, $dbname);
